@@ -16,6 +16,31 @@
             (line-seq rdr))))
 
 
+(defn updateConnections
+  [response, keyName, connectionName, connectionPrice]
+
+  (let [response (atom response)]
+
+    (if (not (contains? @response keyName))
+      (do
+        (reset! response (assoc @response keyName [{"connection" connectionName "price" connectionPrice}]))
+        )
+      (do
+        (reset! response (assoc @response keyName (conj (get @response keyName) {"connection" connectionName "price" connectionPrice})))
+        )
+      )
+
+    (if (not (contains? @response connectionName))
+      (do
+        (reset! response (assoc @response connectionName [{"connection" keyName "price" connectionPrice}]))
+        )
+      (do
+        (reset! response (assoc @response connectionName (conj (get @response connectionName) {"connection" keyName "price" connectionPrice})))
+        )
+      )
+    @response
+    )
+  )
 (defn adapter
   [absolutePath]
 
@@ -31,14 +56,8 @@
             connectionPrice (get value 2)
             ]
 
-        (if (not (contains? @response key))
-          (do
-            (reset! response (assoc @response keyName [{"connection" connectionName "price" connectionPrice}]))
-            )
-          (do
-            (reset! response (assoc @response keyName (conj (get @response keyName) {"connection" connectionName "price" connectionPrice})))
-            )
-          )
+
+        (reset! response (updateConnections @response, keyName, connectionName, connectionPrice))
         )
       )
 
