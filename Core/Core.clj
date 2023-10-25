@@ -3,7 +3,7 @@
   )
 
 (defn process
-  [allNodes, currentNode, fromNode, toNode, path, deadEnds]
+  [allNodes, currentNode, fromNode, toNode, path, price, deadEnds]
 
  (let [
        isFoundResult (= currentNode toNode)
@@ -15,7 +15,10 @@
 
    (if (or (= isFoundResult true) (= isCompleted true))
      (do
-       path
+       {
+        "path" path,
+        "price" price
+        }
        )
      (do
        (doseq [node currentNodeConnections]
@@ -47,6 +50,7 @@
                       fromNode,
                       toNode,
                       (into [] (drop-last 1 path))                 ; remove the last node from current path
+                      (into [] (drop-last 1 price))
                       (conj deadEnds currentNode)                  ; add current node to the deadEnds
                       )
          ; else
@@ -55,6 +59,7 @@
                       fromNode,
                       toNode,
                       (conj path @theLowestPricedNode)              ; add the lowest priced connection of the current node to the path
+                      (conj price @theLowestPrice)
                       deadEnds
                       )
          )
@@ -72,7 +77,7 @@
   [nodes, fromNode, toNode]
 
   ; start recursive function
-  (process nodes (string/upper-case fromNode) (string/upper-case fromNode) (string/upper-case toNode) [(string/upper-case fromNode)] [])
+  (process nodes (string/upper-case fromNode) (string/upper-case fromNode) (string/upper-case toNode) [(string/upper-case fromNode)] [] [])
   )
 
 
