@@ -1,6 +1,6 @@
-(ns clojure-ICA_1.Main
-  (:require [clojure-ICA_1.Adapters.CsvDataAdapter :as CsvDataAdapter])
-  (:require [clojure-ICA_1.Core.Core :as SearchEngineCore])
+(ns PCU_SC_ICA_1_2023.Main
+  (:require [PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter :as CsvDataAdapter])
+  (:require [PCU_SC_ICA_1_2023.Core.Core :as SearchEngineCore])
   )
 
 

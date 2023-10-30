@@ -1,4 +1,4 @@
-(ns clojure-ICA_1.Adapters.CsvDataAdapter
+(ns PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter
   (:require [clojure.string :as string :only [upper-case]])
   )
 
@@ -66,4 +66,4 @@
   )
 
 
-;(process "C:\\Users\\Admin\\Documents\\ClojureProjects\\clojure-test\\src\\clojure_ICA_1\\flights-ICA1.csv")
+;(process "C:\\Users\\Admin\\Documents\\ClojureProjects\\clojure-test\\src\\PCU_SC_ICA_1_2023\\flights-ICA1.csv")
