@@ -3,6 +3,9 @@
   )
 
 (def maxPrice 10001000)
+
+(def maxPathLenght 10)
+
 (defn process
   [allNodes, currentNode, fromNode, toNode, path, price, deadEnds]
 
@@ -49,7 +52,10 @@
           (println "BACK BECAUSE OUT OF THE MAX PRICE")
           )
         ; if the lowest price is -1 that means that there no any suitable connection for the path building
-        (if (or (= @theLowestPrice -1) (> (+ (apply + price) @theLowestPrice) maxPrice))
+        (if (or
+              (= @theLowestPrice -1)
+              (> (+ (apply + price) @theLowestPrice) maxPrice)
+              (> (+ (count path)1 ) maxPathLenght))
           ; then
           (process allNodes,
                    (get path (- (count path) 2)),           ; use the parent node as the next main node
