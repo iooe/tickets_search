@@ -6,8 +6,8 @@
 
 (println (SearchEngineCore/init
            (CsvDataAdapter/adapter "Datasets/flights-ICA1.csv")
-           "Krakov"
+           "Brno"
            "Napoli"
-           1300
+           1000
            )
          )

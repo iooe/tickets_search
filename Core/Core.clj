@@ -4,7 +4,7 @@
 
 (def maxPrice 10001000)
 
-(def maxPathLenght 10)
+(def maxPathLenght 5)
 
 (defn process
   [allNodes, currentNode, fromNode, toNode, path, price, deadEnds]
@@ -55,7 +55,7 @@
         (if (or
               (= @theLowestPrice -1)
               (> (+ (apply + price) @theLowestPrice) maxPrice)
-              (> (+ (count path)1 ) maxPathLenght))
+              (> (+ (count path) 1) maxPathLenght))
           ; then
           (process allNodes,
                    (get path (- (count path) 2)),           ; use the parent node as the next main node
