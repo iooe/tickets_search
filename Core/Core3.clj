@@ -47,7 +47,7 @@
            {
             :path (:path path)
             :price (:price path)
-            :length (count path)
+            :length (count (:path path))
             :priceSum (apply + (:price path))
             }
            ) @allPaths )
