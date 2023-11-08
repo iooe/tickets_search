@@ -1,4 +1,6 @@
-(ns PCU_SC_ICA_1_2023.Core.Core3)
+(ns PCU_SC_ICA_1_2023.Core.Core3
+  (:require [clojure.string :as string :only [upper-case]])
+  )
 
 (defn dfs [graph node endNode visited currentPath currentPathPrice price allPaths]
   ;; Add node to the visited set
@@ -41,7 +43,7 @@
         ]
 
     ; Init
-    (dfs graph start-node end-node visited currentPath currentPathPrice 0 allPaths)
+    (dfs graph (string/upper-case start-node) (string/upper-case end-node) visited currentPath currentPathPrice 0 allPaths)
 
     (map (fn [path]
            {
