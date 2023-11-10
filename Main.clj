@@ -1,6 +1,8 @@
 (ns PCU_SC_ICA_1_2023.Main
   (:require [PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter :as CsvDataAdapter3]
-            [PCU_SC_ICA_1_2023.Core.Core :as SearchEngineCore3])
+            [PCU_SC_ICA_1_2023.Core.Core :as SearchEngineCore3]
+            [clojure.string :as string :only [split]]
+            )
   )
 
 
@@ -9,7 +11,7 @@
 (def LIMITS_LENGTH {"f" 3 "g" 4})
 
 (def isDebug true)
-
+(def filePath "")
 (defn prepare-travel-plan
   [start end type]
   (let [
@@ -24,7 +26,7 @@
 
     ; Get all routes
     (reset! routes (SearchEngineCore3/init
-                     (CsvDataAdapter3/adapter "Datasets/flights-ICA1.csv")
+                     (CsvDataAdapter3/adapter (get (string/split (str *ns*) #"\.") 0) filePath)
                      start
                      end
                      )
@@ -106,6 +108,11 @@
       )
     )
   )
+(def filePath "Datasets/flights-ICA1.csv")
 
-(def isDebug true)
-(prepare-travel-plan "Prague" "Berlin" "g")
+;(def isDebug false)
+;(prepare-travel-plan "Prague" "Berlin" "g")
+
+; How to run it in repl
+; (use 'PCU_SC_ICA_1_2023.Main)
+; (in-ns 'PCU_SC_ICA_1_2023.Main)

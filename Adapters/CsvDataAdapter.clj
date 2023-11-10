@@ -1,7 +1,7 @@
 (ns PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter
   (:require [clojure.string :as string :only [upper-case]]
-      [PCU_SC_ICA_1_2023.Core.Entities :as Entities])
-  )
+            [PCU_SC_ICA_1_2023.Core.Entities :as Entities])
+  (:import (java.io FileNotFoundException)))
 
 (defn parse-number [s] (if (= s "") nil (read-string s)))
 
@@ -10,11 +10,30 @@
           []
           (clojure.string/split line #",")))
 
-(defn line-by-line-parser [file]
-  (with-open [rdr (clojure.java.io/reader file)]
-    (reduce #(conj %1 (parse-line %2))
-            []
-            (line-seq rdr))))
+
+(def readerTries -1)
+(defn line-by-line-parser [namespace file]
+  (println file)
+  (def readerTries (inc readerTries))
+
+  (try
+    (with-open [rdr (clojure.java.io/reader file)]
+      (reduce #(conj %1 (parse-line %2))
+              []
+              (line-seq rdr)
+              )
+      )
+
+    ; Run in repl fix
+    (catch FileNotFoundException e
+      (if (< readerTries 1)
+        (line-by-line-parser namespace (str "src/" namespace "/" file))
+        (println "CANT READ DATASET")
+        )
+      )
+    )
+
+  )
 
 
 (defn updateConnections
@@ -43,12 +62,14 @@
     )
   )
 (defn adapter
-  [absolutePath]
+  [namespace relativePath]
 
   (let [
           response (atom {})
-          fileContent (line-by-line-parser absolutePath)
+          fileContent (line-by-line-parser namespace relativePath)
         ]
+
+    ;src/PCU_SC_ICA_1_2023
 
     (doseq [value fileContent]
       (let [
@@ -64,6 +85,3 @@
     @response
     )
   )
-
-
-;(process "C:\\Users\\Admin\\Documents\\ClojureProjects\\clojure-test\\src\\PCU_SC_ICA_1_2023\\flights-ICA1.csv")
