@@ -1,6 +1,6 @@
 (ns PCU_SC_ICA_1_2023.Main
-  (:require [PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter3 :as CsvDataAdapter3]
-            [PCU_SC_ICA_1_2023.Core.Core3 :as SearchEngineCore3])
+  (:require [PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter :as CsvDataAdapter3]
+            [PCU_SC_ICA_1_2023.Core.Core :as SearchEngineCore3])
   )
 
 

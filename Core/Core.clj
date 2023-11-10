@@ -2,106 +2,56 @@
   (:require [clojure.string :as string :only [upper-case]])
   )
 
-(def maxPrice 10001000)
+(defn dfs [graph node endNode visited currentPath currentPathPrice price allPaths]
+  ;; Add node to the visited set
+  (reset! visited (conj @visited node))
 
-(def maxPathLenght 5)
+  ;; Add node to the current path array
+  (reset! currentPath (conj @currentPath node))
+  (reset! currentPathPrice (conj @currentPathPrice price))
 
-(defn process
-  [allNodes, currentNode, fromNode, toNode, path, price, deadEnds]
+  (if (= node endNode)
+    ; Add current path to the list of all possible paths
+    (reset! allPaths (conj @allPaths {:path (vec @currentPath) :price (filter  #(not (= % 0)) @currentPathPrice)}))
 
-  (let [
-        isFoundResult (= currentNode toNode)
-        isCompleted (= (count path) 0)
-        theLowestPrice (atom -1)
-        theLowestPricedNode (atom nil)
-        currentNodeConnections (get allNodes currentNode)
-        ]
+    ; Start dfs by neighbors of the node that equal to end node
+    (doseq [[connectionName, connectionEntity] (get graph node {})]
 
-    (if (or (= isFoundResult true) (= isCompleted true))
-      (do
-        {
-         "path"  path,
-         "price" price
-         }
-        )
-      (do
-        (doseq [node currentNodeConnections]
-          (if
-            (and
-              ; if path not contains (get node "node")
-              (not (= (some #(= (get node "connection") %) path) true))
-              ; if deadEnds not contains (get node "node")
-              (not (= (some #(= (get node "connection") %) deadEnds) true))
-              ; if theLowestPricedNode is nil, or we found a new lowest price
-              (or
-                (= @theLowestPricedNode nil)
-                (< (get node "price") @theLowestPrice)
-                )
-              )
-            ; if we complete statements, then update theLowestPricedNode and theLowestPrice
-            (do
-              (reset! theLowestPricedNode (get node "connection"))
-              (reset! theLowestPrice (get node "price"))
-              )
-            )
-          )
+      ; if connected node is not in the set of the visited nodes
+      (if (not (contains? @visited connectionName))
 
-        (println "in process" price)
-
-        (if (> (+ (apply + price) @theLowestPrice) maxPrice)
-          (println "BACK BECAUSE OUT OF THE MAX PRICE")
-          )
-        ; if the lowest price is -1 that means that there no any suitable connection for the path building
-        (if (or
-              (= @theLowestPrice -1)
-              (> (+ (apply + price) @theLowestPrice) maxPrice)
-              (> (+ (count path) 1) maxPathLenght))
-          ; then
-          (process allNodes,
-                   (get path (- (count path) 2)),           ; use the parent node as the next main node
-                   fromNode,
-                   toNode,
-                   (into [] (drop-last 1 path))             ; remove the last node from current path
-                   (into [] (drop-last 1 price))
-                   (conj deadEnds currentNode)              ; add current node to the deadEnds
-                   )
-          ; else
-          (process allNodes,
-                   @theLowestPricedNode,                    ; use the lowest priced connection of the current node as the next main node
-                   fromNode,
-                   toNode,
-                   (conj path @theLowestPricedNode)         ; add the lowest priced connection of the current node to the path
-                   (conj price @theLowestPrice)
-                   deadEnds
-                   )
-          )
+        ; then start dfs again, but start node now is the current connected node
+        (dfs graph connectionName endNode visited currentPath currentPathPrice (:price connectionEntity) allPaths)
         )
       )
     )
+
+  ; Remove node from visited set
+  (reset! visited (disj @visited node))
+
+  ; Remove last element from the current path
+  (reset! currentPath (pop @currentPath))
+  (reset! currentPathPrice (pop @currentPathPrice))
   )
 
+(defn init [graph start-node end-node]
+  (let [
+        visited (atom #{})
+        currentPath (atom [])
+        currentPathPrice (atom [])
+        allPaths (atom [])
+        ]
 
-(defn init
-  ; A map where every key is a node and every key's value is a vector that contains node's connections.
-  ; Connections represents as a price and a node attributes.
-  ;
-  ; {"string": [{"price": int, "node": string}]}, string, string
-  [nodes, fromNode, toNode, maxPrice]
+    ; Init
+    (dfs graph (string/upper-case start-node) (string/upper-case end-node) visited currentPath currentPathPrice 0 allPaths)
 
-  (def maxPrice maxPrice)
-  ; start recursive function
-  (process nodes (string/upper-case fromNode) (string/upper-case fromNode) (string/upper-case toNode) [(string/upper-case fromNode)] [] [])
+    (map (fn [path]
+           {
+            :path (:path path)
+            :price (:price path)
+            :length (count (:path path))
+            :priceSum (apply + (:price path))
+            }
+           ) @allPaths )
+    )
   )
-
-
-
-
-
-
-
-
-
-
-
-
-

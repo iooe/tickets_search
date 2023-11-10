@@ -1,5 +1,6 @@
 (ns PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter
-  (:require [clojure.string :as string :only [upper-case]])
+  (:require [clojure.string :as string :only [upper-case]]
+      [PCU_SC_ICA_1_2023.Core.Entities :as Entities])
   )
 
 (defn parse-number [s] (if (= s "") nil (read-string s)))
@@ -23,19 +24,19 @@
 
     (if (not (contains? @response keyName))
       (do
-        (reset! response (assoc @response keyName [{"connection" connectionName "price" connectionPrice}]))
+        (reset! response (assoc @response keyName {connectionName (Entities/->Connection connectionName connectionPrice)}))
         )
       (do
-        (reset! response (assoc @response keyName (conj (get @response keyName) {"connection" connectionName "price" connectionPrice})))
+        (reset! response (assoc @response keyName (assoc (get @response keyName) connectionName (Entities/->Connection connectionName connectionPrice))))
         )
       )
 
     (if (not (contains? @response connectionName))
       (do
-        (reset! response (assoc @response connectionName [{"connection" keyName "price" connectionPrice}]))
+        (reset! response (assoc @response connectionName {keyName (Entities/->Connection keyName connectionPrice)}))
         )
       (do
-        (reset! response (assoc @response connectionName (conj (get @response connectionName) {"connection" keyName "price" connectionPrice})))
+        (reset! response (assoc @response connectionName (assoc (get @response connectionName) keyName (Entities/->Connection keyName connectionPrice))))
         )
       )
     @response
@@ -55,7 +56,6 @@
             connectionName (string/upper-case (get value 1))
             connectionPrice (get value 2)
             ]
-
 
         (reset! response (updateConnections @response, keyName, connectionName, connectionPrice))
         )
