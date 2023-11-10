@@ -48,8 +48,9 @@
     (map (fn [path]
            {
             :path (:path path)
-            :price (:price path)
+            :price (into [] (:price path))
             :length (count (:path path))
+            :flights (- (count (:path path)) 1)
             :priceSum (apply + (:price path))
             }
            ) @allPaths )
