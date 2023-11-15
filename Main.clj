@@ -98,7 +98,7 @@
       (if (> (count (:path route)) 0)
         (do
           (println "Route with prices for segments:" @formattedListOfCities)
-          (println "Total price:" (:price route))
+          (println "Total price:" (:priceSum route))
           (println "Flights:" (:flights route))
           )
         (do
