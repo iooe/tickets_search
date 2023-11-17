@@ -13,7 +13,6 @@
 
 (def readerTries -1)
 (defn line-by-line-parser [namespace file]
-  (println file)
   (def readerTries (inc readerTries))
 
   (try
