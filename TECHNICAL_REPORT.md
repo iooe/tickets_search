@@ -19,3 +19,15 @@ The team decided at the prototyping stage of the project that it would be logica
 2. Adapters - this is where the data adapters lie, which allow you to take data from one format and transform it into a format understandable to the core. At the moment only one type of adapters from csv format is created, because of the unnecessity of the other one. But thanks to this solution, the program becomes flexible and theoretical problems will not arise in the future.
 3. Entities is a file that contains structures that the adapter transforms the data into, and with which the kernel further works. This is necessary to reduce the probability of error and make the code more predictable.
 4. Entry point, aka Main.clj - this is the file where the program is initialized. It is here that the kernel, adapters, function calls and the output to the console are imported.
+
+# Algorithms and Ideas
+
+The initial implementation of the core program had a fundamentals error, which led the team to decide after discussion to implement the new core through other algorithms.
+
+The initial implementation of the kernel searched only for the single best result, after which the search stopped. This was not suitable for the task conditions, as the program should not only search for the best result, but also search with constraints on price and route length, and the result, referring to the task conditions, should be the most expensive of the possible ones, but corresponding to the constraints.
+
+The team's research led to the fact that the participants wrote their own implementations of the path search, after which they were implemented together as a new core, based on the architecture of the old one - since the solutions of the team members separately had their own problems and shortcomings, but they could be eliminated by combining the ideas of the individual team members and creating on their basis the final, at the moment, implementation of the core.
+
+In particular, the new kernel is based on the ideas of not only searching in depth, but also the idea of backtracking on the basis of the found final route. This concept surprisingly allows combining not only finding all possible route variants, but also optimizing for time and work, as well as conciseness of this solution.
+
+
