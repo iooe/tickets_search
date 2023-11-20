@@ -50,3 +50,34 @@ This is where the datasets are located.
 The program Entry Point.
 
 
+## Getting Started
+
+### Installation
+#### 1. Uses REPL mode
+1. Clone the repository into your Clojure project.
+2. Run REPL
+3. Enter the program's namespace
+
+```clojure
+> (use 'PCU_SC_ICA_1_2023.Main)
+> (in-ns 'PCU_SC_ICA_1_2023.Main)
+```
+3. Call the function in a terminal with arguments (departure city, arrival city and type)
+
+```clojure
+> (prepare-travel-plan "Prague" "Berlin" "g")
+```
+#### 2. Uses as a library
+1. Clone the repository into your Clojure project.
+2. Import the program entry point namespace
+```clojure
+(ns [your-namespace]
+    (:require [PCU_SC_ICA_1_2023.Main :as FlightEngine])
+  )
+```
+3. Call the function in your code with arguments (departure city, arrival city and type)
+```clojure
+(FlightEngine/prepare-travel-plan "Prague" "Berlin" "g")
+```
+
+
