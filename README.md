@@ -80,4 +80,9 @@ The program Entry Point.
 (FlightEngine/prepare-travel-plan "Prague" "Berlin" "g")
 ```
 
+## Credits
+
+- [Roman Yepanchenko](https://github.com/iooe)
+- [Kirill Marchenko]()
+- [Vladyslav Zolotarevskyi]()
 
