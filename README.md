@@ -115,7 +115,56 @@ To activate it, set the "isDebug" flag to "true" before calling the main functio
 ; Example
 (FlightEngine/prepare-travel-plan "Prague" "Berlin" "g")
 ```
+## Teamwork
 
+There were several key time points throughout the product development.
+
+First: the prototyping and architecture phase.
+Second: Implementation of the core search algorithm.
+Third: Fixing cases, bugs, and formatting of the results output.
+
+The contribution of human involvement varied from stage to stage. Here is a cursory overview, for a more detailed look at the contributions of contributors to the development please explore the history of issues, commits and requests.
+
+Contributions of contributors:
+
+### Roman
+
+Roman wrote the basic product architecture and the first draft of the search algorithm for the core product. Roman also took on the role of code reviewer and the person who merged codebases from other contributors.
+
+All team members were equally engaged in fixing bugs and borderline cases.
+
+Example commits:
+
+291de9fe3728121e5880505499a2ae8ef3318468
+60972eaa58e1495c4b1ea693949a5f7f21fac884
+2605c22339c734b3ba24c9686ba4dd02915dd206
+
+### Vladyslav
+
+The first implementation of the search algorithm for the core was accepted by the team as unsuitable, after which Vladyslav and Kirill implemented their ideas.
+
+Using the work of both contributors, a new core was written.
+
+All team members were equally engaged in fixing bugs and borderline cases.
+
+Example commits:
+
+212224b066675605f9db00c6b2f0a4ac44188d82
+7af35e123a05218a849e77ae7d969d5dd747ebbd
+7f2d643cf81c5fd6bd1dac02a6c4dab835857a80
+
+### Kirill
+
+The first implementation of the search algorithm for the core was accepted by the team as unsuitable, after which Vladyslav and Kirill implemented their ideas.
+Using the work of both contributors, a new core was written.
+
+All team members were equally engaged in fixing bugs and borderline cases.
+
+Example commits:
+
+7a7bc550f1f57b4374dd7f550646399ae4499677
+5b144c64c418931dab558b6750179f21f4c84c6c
+e1e4e648e2ed783ac2efcf163b485e9cdf25debd
 
 ## Credits
 
