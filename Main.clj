@@ -108,11 +108,12 @@
       )
     )
   )
+
+;==========
+;
+;===INIT===
+;
+;==========
 (def filePath "Datasets/flights-ICA1.csv")
-
-;(def isDebug false)
+(def isDebug false)
 ;(prepare-travel-plan "Prague" "Berlin" "g")
-
-; How to run it in repl
-; (use 'PCU_SC_ICA_1_2023.Main)
-; (in-ns 'PCU_SC_ICA_1_2023.Main)
