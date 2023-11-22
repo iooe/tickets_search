@@ -22,8 +22,6 @@ The team decided at the prototyping stage of the product that it would be logica
 
 # Algorithms and Ideas
 
-The initial implementation of the core product had a fundamentals error, which led the team to decide after discussion to implement the new core through other algorithms.
-
 The initial implementation of the kernel searched only for the single best result, after which the search stopped. This was not suitable for the task conditions, as the product should not only search for the best result, but also search with constraints on price and route length, and the result, referring to the task conditions, should be the most expensive of the possible ones, but corresponding to the constraints.
 
 The team's research led to the fact that the participants wrote their own implementations of the path search, after which they were implemented together as a new core, based on the architecture of the old one - since the solutions of the team members separately had their own problems and shortcomings, but they could be eliminated by combining the ideas of the individual team members and creating on their basis the final, at the moment, implementation of the core.
