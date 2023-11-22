@@ -30,4 +30,15 @@ The team's research led to the fact that the participants wrote their own implem
 
 In particular, the new kernel is based on the ideas of not only searching in depth, but also the idea of backtracking on the basis of the found final route. This concept surprisingly allows combining not only finding all possible route variants, but also optimizing for time and work, as well as conciseness of this solution.
 
+# Choices and evaluation of solutions
 
+Other potential methods for implementing the core were considered, yet they were ultimately deemed less promising.
+
+This may be due to their complexity or brevity of implementation, or because they failed to provide objective advantages over the solution that was ultimately implemented as the main kernel.
+
+Possible alternative ideas included:
+
+1. Creating numerous hash map structures based on the input graph and searching through them in the future.
+   It's a fascinating concept, but it requires a considerable amount of unnecessary work in computation and debugging complexity.
+2. The idea of Modified Breadth-First Search was dismissed because it did not offer any advantages over the Modified Depth-First Search, as per the provided dataset. Searching for tickets based on connections between cities can be a challenging endeavour, with final routes often being highly intricate.
+3. Breadth-first search appears ill-suited to this task due to its reliance on neighbouring nodes. Additionally, the use of the A* path search algorithm was deemed impractical due to its specific graph requirements. Adapting graphs to fit this algorithm via adapters would require extra time, but the resulting differences compared to the chosen modified depth-first path search would be minimal.
