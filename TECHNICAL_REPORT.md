@@ -10,7 +10,6 @@ The architecture of the product is based on a simple idea - the whole product lo
 
 As interfaces, we mean some entities through which data is transferred. In the case of the Clojure programming language, such entities are the defrecord construct, which allows you to create a data structure.
 
-
 As interfaces, there are entities through which data is transmitted. In the case of the Clojure programming language, such entities are the defrecord construct, which allows you to create a data structure.
 
 The team decided at the prototyping stage of the product that it would be logical to divide the product into four parts: Core, Data Adapters, Entities/Data Structures and Entry Point/Main.
@@ -40,3 +39,55 @@ Possible alternative ideas included:
    It's a fascinating concept, but it requires a considerable amount of unnecessary work in computation and debugging complexity.
 2. The idea of Modified Breadth-First Search was dismissed because it did not offer any advantages over the Modified Depth-First Search, as per the provided dataset. Searching for tickets based on connections between cities can be a challenging endeavour, with final routes often being highly intricate.
 3. Breadth-first search appears ill-suited to this task due to its reliance on neighbouring nodes. Additionally, the use of the A* path search algorithm was deemed impractical due to its specific graph requirements. Adapting graphs to fit this algorithm via adapters would require extra time, but the resulting differences compared to the chosen modified depth-first path search would be minimal.
+
+
+## Teamwork
+
+There were several key time points throughout the product development.
+
+First: the prototyping and architecture phase.
+Second: Implementation of the core search algorithm.
+Third: Fixing cases, bugs, and formatting of the results output.
+
+The contribution of human involvement varied from stage to stage. Here is a cursory overview, for a more detailed look at the contributions of contributors to the development please explore the history of issues, commits and requests.
+
+Contributions of contributors:
+
+### Roman
+
+Roman wrote the basic product architecture and the first draft of the search algorithm for the core product. Roman also took on the role of code reviewer and the person who merged codebases from other contributors.
+
+All team members were equally engaged in fixing bugs and borderline cases.
+
+Example commits:
+
+291de9fe3728121e5880505499a2ae8ef3318468
+60972eaa58e1495c4b1ea693949a5f7f21fac884
+2605c22339c734b3ba24c9686ba4dd02915dd206
+
+### Vladyslav
+
+The first implementation of the search algorithm for the core was accepted by the team as unsuitable, after which Vladyslav and Kirill implemented their ideas.
+
+Using the work of both contributors, a new core was written.
+
+All team members were equally engaged in fixing bugs and borderline cases.
+
+Example commits:
+
+212224b066675605f9db00c6b2f0a4ac44188d82
+7af35e123a05218a849e77ae7d969d5dd747ebbd
+7f2d643cf81c5fd6bd1dac02a6c4dab835857a80
+
+### Kirill
+
+The first implementation of the search algorithm for the core was accepted by the team as unsuitable, after which Vladyslav and Kirill implemented their ideas.
+Using the work of both contributors, a new core was written.
+
+All team members were equally engaged in fixing bugs and borderline cases.
+
+Example commits:
+
+7a7bc550f1f57b4374dd7f550646399ae4499677
+5b144c64c418931dab558b6750179f21f4c84c6c
+e1e4e648e2ed783ac2efcf163b485e9cdf25debd
