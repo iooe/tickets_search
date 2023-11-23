@@ -22,7 +22,12 @@ The product is built on top of Clojure — a dynamic and functional dialect of t
 
 The product's algorithm functionality is based on an optimized depth-first search with subsequent filtering of results based on input parameters. That is, the result is always the best result.
 
-### Project Structure
+### Project Namespace Structure
+
+```
+.
++-- _src\clojure_ica
+```
 
 ```
 .
