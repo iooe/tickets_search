@@ -22,7 +22,12 @@ The product is built on top of Clojure — a dynamic and functional dialect of t
 
 The product's algorithm functionality is based on an optimized depth-first search with subsequent filtering of results based on input parameters. That is, the result is always the best result.
 
-### Project Structure
+### Project Namespace Structure
+
+```
+.
++-- _src\clojure_ica
+```
 
 ```
 .
@@ -92,8 +97,8 @@ To activate it, set the "isDebug" flag to "true" before calling the main functio
 
 ```clojure
 ; Example
-> (use 'PCU_SC_ICA_1_2023.Main)
-> (in-ns 'PCU_SC_ICA_1_2023.Main)
+> (use 'clojure_ica.Main)
+> (in-ns 'clojure_ica.Main)
 ```
 3. Call the function in a terminal with arguments (departure city, arrival city and type)
 
@@ -107,7 +112,7 @@ To activate it, set the "isDebug" flag to "true" before calling the main functio
 ```clojure
 ; Example
 (ns [your-namespace]
-    (:require [PCU_SC_ICA_1_2023.Main :as FlightEngine])
+    (:require [clojure_ica.Main :as FlightEngine])
   )
 ```
 3. Call the function in your code with arguments (departure city, arrival city and type)
@@ -115,8 +120,6 @@ To activate it, set the "isDebug" flag to "true" before calling the main functio
 ; Example
 (FlightEngine/prepare-travel-plan "Prague" "Berlin" "g")
 ```
-
-
 ## Credits
 
 - [Roman Yepanchenko](https://github.com/iooe)

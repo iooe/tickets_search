@@ -1,6 +1,6 @@
-(ns PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter
+(ns clojure_ica.Adapters.CsvDataAdapter
   (:require [clojure.string :as string :only [upper-case]]
-            [PCU_SC_ICA_1_2023.Core.Entities :as Entities])
+            [clojure_ica.Core.Entities :as Entities])
   (:import (java.io FileNotFoundException)))
 
 (defn parse-number [s] (if (= s "") nil (read-string s)))
@@ -68,7 +68,7 @@
           fileContent (line-by-line-parser namespace relativePath)
         ]
 
-    ;src/PCU_SC_ICA_1_2023
+    ;src/clojure_ica
 
     (doseq [value fileContent]
       (let [

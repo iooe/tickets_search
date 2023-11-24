@@ -1,4 +1,4 @@
-(ns PCU_SC_ICA_1_2023.Core.Core
+(ns clojure_ica.Core.Core
   (:require [clojure.string :as string :only [upper-case]])
   )
 

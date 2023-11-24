@@ -1,6 +1,6 @@
-(ns PCU_SC_ICA_1_2023.Main
-  (:require [PCU_SC_ICA_1_2023.Adapters.CsvDataAdapter :as CsvDataAdapter3]
-            [PCU_SC_ICA_1_2023.Core.Core :as SearchEngineCore3]
+(ns clojure_ica.Main
+  (:require [clojure_ica.Adapters.CsvDataAdapter :as CsvDataAdapter3]
+            [clojure_ica.Core.Core :as SearchEngineCore3]
             [clojure.string :as string :only [split]]
             )
   )
