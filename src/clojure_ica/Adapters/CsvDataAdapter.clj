@@ -17,10 +17,13 @@
 
   (try
     (with-open [rdr (clojure.java.io/reader file)]
-      (reduce #(conj %1 (parse-line %2))
-              []
-              (line-seq rdr)
-              )
+      (do
+        (def readerTries -1)
+        (reduce #(conj %1 (parse-line %2))
+                []
+                (line-seq rdr)
+                )
+        )
       )
 
     ; Run in repl fix
