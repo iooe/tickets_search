@@ -8,7 +8,7 @@
 (defn prepare_travel_plan
   [departure destination people]
 
-  (if (= (count people) 0)
+  (if (> (count people) 0)
     (do
       (let [
             avgPrices (atom [])
@@ -33,7 +33,10 @@
           (float (/ @response 1.4))
           )
         )
-        (println "[people] argument is empty")
+      )
+    (do
+      (println "[people] argument is empty")
+      9999999999
       )
     )
   )
