@@ -1,4 +1,4 @@
-(ns clojure_ica2.Dev.CsvDataAdapter
+(ns clojure_ica2.AnalysisService.CsvDataAdapter
   (:require [clojure.string :as string :only [upper-case]]
             [clojure_ica2.Core.Entities :as Entities])
   (:import (java.io FileNotFoundException)))

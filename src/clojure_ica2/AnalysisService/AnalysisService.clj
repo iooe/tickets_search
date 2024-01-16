@@ -1,6 +1,6 @@
-(ns clojure_ica2.Dev.Training
+(ns clojure_ica2.AnalysisService.AnalysisService
   (:require
-    [clojure_ica2.Dev.CsvDataAdapter :as CsvDataAdapter]
+    [clojure_ica2.AnalysisService.CsvDataAdapter :as CsvDataAdapter]
     [clojure.string :as string :only [split]]
    )
   )
@@ -121,8 +121,10 @@
         ]
 
     (reset! values (CsvDataAdapter/adapter (get (string/split (str *ns*) #"\.") 0) filepath))
+    (println "averageByYob:")
     (println (conj @avgPrices (averageByYob values)))
-    ;(println (conj @avgPrices (averageByDepartureDestinationPrice values)))
+    (println "averageByDepartureDestinationPrice:")
+    (println (conj @avgPrices (averageByDepartureDestinationPrice values)))
     )
   )
 
