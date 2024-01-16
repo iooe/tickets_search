@@ -42,6 +42,7 @@
           )
 
         ; Looking for the best ticket based on the final suggested price
+        ; debug: (println (SearchEngineApi/process departure destination @passengersType @finalSuggestedPrice)
         (:totalPrice (SearchEngineApi/process departure destination @passengersType @finalSuggestedPrice))
         )
       )
