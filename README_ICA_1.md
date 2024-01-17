@@ -1,6 +1,4 @@
-# Optimization based on data
-
-[ICA 1 (Flight Search Engine) README link](README_ICA_1.md)
+# Flight Search Engine
 
 ## Intro
 
@@ -16,61 +14,68 @@ This product is a study task for assignment, the data is mock, the authors do no
 ## How it works
 
 > This page does not delve into the details of how the algorithm itself works or the decisions behind the chosen architecture. For such in-depth details, please visit
-the [technical report](TECHNICAL_REPORT_ICA_2.md) page.
+the [technical report](TECHNICAL_REPORT_ICA_1.md) page.
 
 The product is built on top of Clojure — a dynamic and functional dialect of the Lisp programming language that has JVM as the VM.
 
-## CHANGES TO CLOJURE_ICA ORIGINAL CODE
+### Algorithms
 
-> The Optimisation Based on Data source code is located at clojure_ica2. The original Flight Search Engine source code is located at clojure_ica.
-
-+ [+] ./clojure_ica/API.clj 
-is an alternative way to use the Flight Search Service that was developed as a part of the ICA1.
+The product's algorithm functionality is based on an optimized depth-first search with subsequent filtering of results based on input parameters. That is, the result is always the best result.
 
 ### Project Namespace Structure
 
 ```
 .
-+-- _src\clojure_ica2
++-- _src\clojure_ica
 ```
 
 ```
 .
 +-- _Core
-|   +-- Entities.clj -> the project defrecords
+|   +-- Core.clj
+|   +-- Entities.clj
 ```
+The core of the product, all calculations are made in this part of the code base. The Entities file is a set of structures that are used to transfer data between the adapter and the core.
 
 ```
 .
-+-- _AnalysisService
-|   +-- AnalysisService.clj
-|   +-- CsvDataAdapter.clj
-|   +-- sales_team_1.csv
++-- _Adapters
+|   +-- CsvDataAdapter
 ```
-AnalysisService. This service allows to extract meaningful data based on input parameters (in this case, sales_team_1.csv file), which are further used to predict prices for groups of passengers/families.
+Adapters. These scripts enable the user to import data from external sources into a format that can be understood by the product core.
+
 ```
 .
-+-- Main.clj -> is the product Entry Point
-+-- Store.clj -> a storage for the data that was generated useing Analysis Service.
++-- _Datasets
+|   +-- flights-ICA1.csv
 ```
+This is where the datasets are located.
 
+```
+.
++-- Main.clj
+```
+The product Entry Point.
 
 ### Features
 
 1. An architecture designed for the versatility to incorporate new features and changes as required.
 2. Code written to be clean and comprehensible, enabling the product's codebase to remain up-to-date.
 3. Employing design patterns and breaking down the code into logical entities has enabled the project to be easily comprehensible for third-party developers.
+4. Additionally, the inclusion of a Debug mode permits the straightforward tracing of the entire programme execution path.
 
 ### Example
 
 #### Input
 
 ```clojure
-(OptimizedFlightEngine/prepare_travel_plan "Prague" "Berlin" "g" [["PassengerName" "YearOfBirth"] ["PassengerName" "YearOfBirth"] ["PassengerName" "YearOfBirth"]])
+(FlightEngine/prepare-travel-plan "Prague" "Berlin" "g")
 ```
 #### Output
 ```
-900
+Route with prices for segments: PRAGUE (300)> BUDAPEST (200)> ZAGREB (400)> MUNICH (100)> BERLIN
+Total price: 1000
+Flights: 4
 ```
 
 ### References
@@ -80,6 +85,10 @@ AnalysisService. This service allows to extract meaningful data based on input p
 
 ## Getting Started
 
+### Debug mode
+
+To activate it, set the "isDebug" flag to "true" before calling the main function "prepare-travel-plan". By default, this flag is set on line 112 of the "Main.clj" file
+
 ### Installation
 #### 1. Uses REPL mode
 1. Clone the repository into your Clojure project.
@@ -88,14 +97,14 @@ AnalysisService. This service allows to extract meaningful data based on input p
 
 ```clojure
 ; Example
-> (use 'clojure_ica2.Main)
-> (in-ns 'clojure_ica2.Main)
+> (use 'clojure_ica.Main)
+> (in-ns 'clojure_ica.Main)
 ```
-3. Call the function in a terminal with arguments (departure city, arrival city, type and vector of vectors that includes passegners data)
+3. Call the function in a terminal with arguments (departure city, arrival city and type)
 
 ```clojure
 ; Example
-> (prepare_travel_plan "Prague" "Berlin" "g" [["PassengerName" "YearOfBirth"] ["PassengerName" "YearOfBirth"] ["PassengerName" "YearOfBirth"]])
+> (prepare-travel-plan "Prague" "Berlin" "g")
 ```
 #### 2. Uses as a library
 1. Clone the repository into your Clojure project.
@@ -103,13 +112,13 @@ AnalysisService. This service allows to extract meaningful data based on input p
 ```clojure
 ; Example
 (ns [your-namespace]
-    (:require [clojure_ica2.Main :as OptimizedFlightEngine])
+    (:require [clojure_ica.Main :as FlightEngine])
   )
 ```
 3. Call the function in your code with arguments (departure city, arrival city and type)
 ```clojure
 ; Example
-(OptimizedFlightEngine/prepare_travel_plan "Prague" "Berlin" "g" [["PassengerName" "YearOfBirth"] ["PassengerName" "YearOfBirth"] ["PassengerName" "YearOfBirth"]])
+(FlightEngine/prepare-travel-plan "Prague" "Berlin" "g")
 ```
 ## Credits
 
