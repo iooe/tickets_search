@@ -131,7 +131,8 @@
 ;==========
 ;
 ;===INIT===
-;
+; This class does not participate in the search engine. This class and its dependencies are only necessary
+; to demonstrate how the authors have implemented automatic pattern generation for the final search engine.
 ;==========
 (run "sales_team_1.csv")
 
