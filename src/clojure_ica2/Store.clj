@@ -2,6 +2,7 @@
 
 (def medianDepDes {
                    "KrakowZagreb" 808.0,
+                   "KrakovZagreb" 808.0,
                    "PragueRijeka" 1020.0,
                    "HamburgRome" 808.0,
                    "ViennaWarsaw" 1111.0,
