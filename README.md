@@ -113,7 +113,7 @@ AnalysisService. This service allows to extract meaningful data based on input p
 ```
 ## Credits
 
-- [Roman Yepanchenko](https://github.com/iooe)
+- [Roman Y](https://github.com/iooe)
 - [Kirill Marchenko]()
 - [Vladyslav Zolotarevskyi](https://github.com/TokioBoy)
 
